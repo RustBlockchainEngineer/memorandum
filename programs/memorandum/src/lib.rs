@@ -32,13 +32,13 @@ pub mod memorandum {
     }
 
     /// super owner can create memorandum manager
-    pub fn create_memorandum_manager(ctx: Context<CreateMemorandumManager>) -> Result<()> {
-        Ok(())
+    pub fn create_memorandum_manager(ctx: Context<CreateMemorandumManager>, penalty_amount: u64) -> Result<()> {
+        process_create_memorandum_manager::handle(ctx, penalty_amount)
     }
 
     /// super owner can update global state
     pub fn update_memorandum_manager(ctx: Context<UpdateMemorandumManager>) -> Result<()> {
-        Ok(())
+        process_update_memorandum_manager::handle(ctx, penalty_amount)
     }
 
     /// creator can create memorandum

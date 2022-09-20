@@ -7,6 +7,5 @@ pub const TITLE_LENGTH: u32 = 50;
 #[constant]
 pub const CONTENT_LENGTH: u32 = 500;
 
-#[constant]
-pub const GLOBAL_STATE_SEED: &str = "GLOBAL_STATE_SEED";
-pub const GLOBAL_STATE_TAG: &[u8] = GLOBAL_STATE_SEED.as_bytes();
+pub const GLOBAL_STATE_TAG: &[u8] = b'GLOBAL_STATE_TAG';
+pub const MEMORANDUM_MANAGER_TAG: &[u8] = b'MEMORANDUM_MANAGER_TAG';
