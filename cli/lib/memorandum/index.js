@@ -27,9 +27,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllMemorandumManagers = exports.updateMemorandumCommand = exports.createMemorandumCommand = exports.createMemorandumManagerCommand = exports.createGlobalStateCommand = exports.readJsonKeypair = exports.SOLANA_CONNECTION = exports.RPC_ENDPOINT = exports.MEMORANDUM_PID = void 0;
-const fs_1 = __importDefault(require("fs"));
 const anchor = __importStar(require("@project-serum/anchor"));
 const main_1 = require("./main");
+const fs_1 = __importDefault(require("fs"));
 exports.MEMORANDUM_PID = 'HuutBEMazN5RWDAQCXbDRFqxQc7hrYmhvR4XCn6Reo7i';
 exports.RPC_ENDPOINT = 'http://localhost:8899';
 // export const RPC_ENDPOINT = 'https://api.devnet.solana.com';

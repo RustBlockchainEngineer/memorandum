@@ -10,11 +10,10 @@
     "declaration": true,
     "declarationMap": true,
 
-    "target": "ESNext",
+    "target": "ES2019",
     "module": "CommonJS",
     
     "outDir": "lib",
-    "rootDir": "src",
-    "types": ["node"],
-  }
+  },
+  "include": ["./src/index.ts"]
 }

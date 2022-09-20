@@ -1,7 +1,6 @@
-import fs from "fs"
 import * as anchor from "@project-serum/anchor"
 import { createGlobalState, createMemorandum, createMemorandumManager, getMemorandumManagerList, initProgram, updateMemorandum } from "./main";
-
+import fs from "fs"
 export const MEMORANDUM_PID = 'HuutBEMazN5RWDAQCXbDRFqxQc7hrYmhvR4XCn6Reo7i';
 
 export const RPC_ENDPOINT = 'http://localhost:8899';
