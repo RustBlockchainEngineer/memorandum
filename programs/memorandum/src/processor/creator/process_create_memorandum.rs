@@ -1,16 +1,22 @@
 use crate::{constant::*, states::*, utils::*, error::*};
 use anchor_lang::prelude::*;
+
+#[derive(AnchorSerialize, AnchorDeserialize)]
+pub struct CreateMemorandumIx {
+    pub title: String,
+    pub content: String
+}
+
 pub fn handle(
     ctx: Context<CreateMemorandum>,
-    title: String,
-    content: String,
+    ix: CreateMemorandumIx,
 ) -> Result<()> {
 
     ctx.accounts.memorandum.bump = *ctx.bumps.get("memorandum").unwrap();
     ctx.accounts.memorandum.creator = ctx.accounts.creator.key();
     ctx.accounts.memorandum.memorandum_manager = ctx.accounts.memorandum_manager.key();
-    ctx.accounts.memorandum.title = title;
-    ctx.accounts.memorandum.content = content;
+    ctx.accounts.memorandum.title = ix.title;
+    ctx.accounts.memorandum.content = ix.content;
     ctx.accounts.memorandum.memorandum_num = ctx.accounts.global_state.memorandum_count;
     ctx.accounts.global_state.memorandum_count = ctx.accounts.global_state.memorandum_count.safe_add(1)?;
 
@@ -18,8 +24,7 @@ pub fn handle(
 }
 #[derive(Accounts)]
 #[instruction(
-    title: String,
-    content: String
+    ix: CreateMemorandumIx
 )]
 pub struct CreateMemorandum<'info> {
     #[account(mut)]
@@ -46,8 +51,8 @@ pub struct CreateMemorandum<'info> {
     bump,
     payer = payer,
     space = std::mem::size_of::<Memorandum>() + 8 + TITLE_LENGTH + CONTENT_LENGTH,
-    constraint = title.len() <= TITLE_LENGTH @ MemorandumError::InvalidLength,
-    constraint = content.len() <= CONTENT_LENGTH @ MemorandumError::InvalidLength,
+    constraint = ix.title.len() <= TITLE_LENGTH @ MemorandumError::InvalidLength,
+    constraint = ix.content.len() <= CONTENT_LENGTH @ MemorandumError::InvalidLength,
     )]
     pub memorandum: Box<Account<'info, Memorandum>>,
 

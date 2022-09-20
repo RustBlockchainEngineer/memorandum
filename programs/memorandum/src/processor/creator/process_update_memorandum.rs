@@ -1,10 +1,17 @@
 use crate::{constant::*, states::*, error::*};
 use anchor_lang::prelude::*;
 use anchor_spl::token::{self, Token, TokenAccount, Transfer};
+
+
+#[derive(AnchorSerialize, AnchorDeserialize)]
+pub struct UpdateMemorandumIx {
+    pub title: String,
+    pub content: String
+}
+
 pub fn handle(
     ctx: Context<UpdateMemorandum>,
-    title: String,
-    content: String,
+    ix: UpdateMemorandumIx,
 ) -> Result<()> {
     let penalty_amount = ctx.accounts.memorandum_manager.penalty_amount;
     if penalty_amount > 0 {
@@ -19,15 +26,14 @@ pub fn handle(
         );
         token::transfer(transfer_ctx, ctx.accounts.memorandum_manager.penalty_amount)?;
     }
-    ctx.accounts.memorandum.title = title;
-    ctx.accounts.memorandum.content = content;
+    ctx.accounts.memorandum.title = ix.title;
+    ctx.accounts.memorandum.content = ix.content;
 
     Ok(())
 }
 #[derive(Accounts)]
 #[instruction(
-    title: String,
-    content: String,
+    ix: UpdateMemorandumIx
 )]
 pub struct UpdateMemorandum<'info> {
     #[account(mut)]
@@ -51,8 +57,8 @@ pub struct UpdateMemorandum<'info> {
         bump = memorandum.bump,
         has_one = creator,
         has_one = memorandum_manager,
-        constraint = title.len() <= TITLE_LENGTH @ MemorandumError::InvalidLength,
-        constraint = content.len() <= CONTENT_LENGTH @ MemorandumError::InvalidLength,
+        constraint = ix.title.len() <= TITLE_LENGTH @ MemorandumError::InvalidLength,
+        constraint = ix.content.len() <= CONTENT_LENGTH @ MemorandumError::InvalidLength,
     )]
     pub memorandum: Box<Account<'info, Memorandum>>,
 

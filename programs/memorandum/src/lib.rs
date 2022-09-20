@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("HuutBEMazN5RWDAQCXbDRFqxQc7hrYmhvR4XCn6Reo7i");
 
 /// constant
 pub mod constant;
@@ -42,13 +42,13 @@ pub mod memorandum {
     }
 
     /// creator can create memorandum
-    pub fn create_memorandum(ctx: Context<CreateMemorandum>, title: String, content: String) -> Result<()> {
-        process_create_memorandum::handle(ctx, title, content)
+    pub fn create_memorandum(ctx: Context<CreateMemorandum>, ix: CreateMemorandumIx) -> Result<()> {
+        process_create_memorandum::handle(ctx, ix)
     }
 
     /// creator can update memorandum
-    pub fn update_memorandum(ctx: Context<UpdateMemorandum>, title: String, content: String) -> Result<()> {
-        process_update_memorandum::handle(ctx, title, content)
+    pub fn update_memorandum(ctx: Context<UpdateMemorandum>, ix: UpdateMemorandumIx) -> Result<()> {
+        process_update_memorandum::handle(ctx, ix)
     }
 
 }
