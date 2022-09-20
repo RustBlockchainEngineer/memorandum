@@ -7,6 +7,7 @@ pub struct GlobalState {
     pub super_owner: Pubkey,
     pub penalty_wallet: Pubkey,
 
+    // this space is for extra fields after contract deployed
     pub reserved: [u128; 7],
 }
 
@@ -17,6 +18,7 @@ pub struct MemorandumManager {
     pub penalty_mint: Pubkey,
     pub penalty_amount: u64,
 
+    // this space is for extra fields after contract deployed
     pub reserved: [u128; 5],
 }
 
@@ -29,5 +31,6 @@ pub struct Memorandum {
     pub title: String,
     pub content: String,
 
+    // this space is for extra fields after contract deployed
     pub reserved: [u128; 7],
 }
