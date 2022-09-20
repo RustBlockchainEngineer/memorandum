@@ -1,5 +1,7 @@
 use anchor_lang::prelude::*;
 
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+
 /// constant
 pub mod constant;
 /// states
@@ -12,8 +14,7 @@ pub mod processor;
 pub mod events;
 ///utils
 pub mod utils;
-
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+use crate::processor::*;
 
 
 #[program]
@@ -22,12 +23,12 @@ pub mod memorandum {
 
     /// upgrade authority of contract can create global state at first
     pub fn create_global_state(ctx: Context<CreateGlobalState>) -> Result<()> {
-        Ok(())
+        process_create_global_state::handle(ctx)
     }
 
     /// super owner can update global state
-    pub fn update_global_state(ctx: Context<UpdateGlobalState>) -> Result<()> {
-        Ok(())
+    pub fn update_global_state(ctx: Context<UpdateGlobalState>, super_owner: Pubkey, penalty_wallet: Pubkey) -> Result<()> {
+        process_update_global_state::handle(ctx, super_owner, penalty_wallet)
     }
 
     /// super owner can create memorandum manager
