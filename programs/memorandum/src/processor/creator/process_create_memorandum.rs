@@ -1,7 +1,5 @@
 use crate::{constant::*, states::*, utils::*, error::*};
 use anchor_lang::prelude::*;
-use anchor_spl::token::{Mint, Token, TokenAccount};
-use std::str::FromStr;
 pub fn handle(
     ctx: Context<CreateMemorandum>,
     title: String,

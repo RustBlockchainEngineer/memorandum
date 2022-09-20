@@ -1,5 +1,4 @@
 use anchor_lang::prelude::*;
-use std::str::FromStr;
 #[account]
 #[derive(Default)]
 pub struct GlobalState {

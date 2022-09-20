@@ -1,7 +1,6 @@
-use crate::{constant::*, states::*, utils::*, error::*};
+use crate::{constant::*, states::*};
 use anchor_lang::prelude::*;
-use anchor_spl::token::{Mint, Token, TokenAccount};
-use std::str::FromStr;
+use anchor_spl::token::{Mint, Token};
 pub fn handle(
     ctx: Context<CreateMemorandumManager>,
     penalty_amount: u64

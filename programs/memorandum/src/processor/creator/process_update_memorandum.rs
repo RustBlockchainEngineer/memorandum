@@ -1,7 +1,6 @@
-use crate::{constant::*, states::*, utils::*, error::*};
+use crate::{constant::*, states::*, error::*};
 use anchor_lang::prelude::*;
-use anchor_spl::token::{Mint, Token, TokenAccount};
-use std::str::FromStr;
+use anchor_spl::token::{self, Token, TokenAccount, Transfer};
 pub fn handle(
     ctx: Context<UpdateMemorandum>,
     title: String,
@@ -26,7 +25,10 @@ pub fn handle(
     Ok(())
 }
 #[derive(Accounts)]
-#[instruction()]
+#[instruction(
+    title: String,
+    content: String,
+)]
 pub struct UpdateMemorandum<'info> {
     #[account(mut)]
     pub creator: Signer<'info>,

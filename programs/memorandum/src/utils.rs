@@ -1,6 +1,5 @@
-use crate::{error::*, states::*};
+use crate::{error::*};
 use anchor_lang::prelude::*;
-use std::convert::TryInto;
 
 pub fn assert_pda(seeds: &[&[u8]], program_id: &Pubkey, pda: &Pubkey) -> Result<()> {
     let (found_key, _bump) = Pubkey::find_program_address(seeds, program_id);

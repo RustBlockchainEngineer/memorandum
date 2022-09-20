@@ -37,7 +37,7 @@ pub mod memorandum {
     }
 
     /// super owner can update global state
-    pub fn update_memorandum_manager(ctx: Context<UpdateMemorandumManager>) -> Result<()> {
+    pub fn update_memorandum_manager(ctx: Context<UpdateMemorandumManager>, penalty_amount: u64) -> Result<()> {
         process_update_memorandum_manager::handle(ctx, penalty_amount)
     }
 
@@ -47,7 +47,7 @@ pub mod memorandum {
     }
 
     /// creator can update memorandum
-    pub fn update_memorandum(ctx: Context<UpdateMemorandum>) -> Result<()> {
+    pub fn update_memorandum(ctx: Context<UpdateMemorandum>, title: String, content: String) -> Result<()> {
         process_update_memorandum::handle(ctx, title, content)
     }
 
