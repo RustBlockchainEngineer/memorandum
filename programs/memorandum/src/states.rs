@@ -29,6 +29,7 @@ pub struct Memorandum {
     pub bump: u8,
     pub creator: Pubkey,
     pub memorandum_manager: Pubkey,
+    pub memorandum_num: u64,
     pub title: String,
     pub content: String,
 

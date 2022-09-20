@@ -42,13 +42,13 @@ pub mod memorandum {
     }
 
     /// creator can create memorandum
-    pub fn create_memorandum(ctx: Context<CreateMemorandum>) -> Result<()> {
-        Ok(())
+    pub fn create_memorandum(ctx: Context<CreateMemorandum>, title: String, content: String) -> Result<()> {
+        process_create_memorandum::handle(ctx, title, content)
     }
 
     /// creator can update memorandum
     pub fn update_memorandum(ctx: Context<UpdateMemorandum>) -> Result<()> {
-        Ok(())
+        process_update_memorandum::handle(ctx, title, content)
     }
 
 }

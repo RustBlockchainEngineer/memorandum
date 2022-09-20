@@ -10,6 +10,8 @@ pub enum MemorandumError {
     InvalidProgramAddress,
     #[msg("InvalidOwner")]
     InvalidOwner,
+    #[msg("Invalid Mint")]
+    InvalidMint,
     #[msg("NotAllowed")]
     NotAllowed,
     #[msg("Math operation overflow")]
