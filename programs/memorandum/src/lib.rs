@@ -8,6 +8,10 @@ pub mod states;
 pub mod error;
 ///processor
 pub mod processor;
+///events
+pub mod events;
+///utils
+pub mod utils;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
