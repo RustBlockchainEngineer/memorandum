@@ -24,4 +24,6 @@ pub enum MemorandumError {
     InvalidProgramData,
     #[msg("The provided program upgrade authority is incorrect.")]
     InvalidProgramUpgradeAuthority,
+    #[msg("The length of string is incorrect.")]
+    InvalidLength,
 }
