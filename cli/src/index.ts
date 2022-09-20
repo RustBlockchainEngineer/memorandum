@@ -1,6 +1,7 @@
 #!/usr/bin/env -S ts-node --transpile-only
 
 import { Command } from "commander";
+import { createGlobalStateCommand } from "./memorandum";
 
 const program = new Command("memorandum")
   .showHelpAfterError(true)
@@ -10,7 +11,7 @@ const program = new Command("memorandum")
 program.command("create-global-state <SIGNER>")
   .description("create global state of memorandum program")
   .action(function (signer){
-    console.log("create global state", signer)
+    createGlobalStateCommand(signer)
   });
 
 program.command("update-super-owner <NEW_SUPER_OWNER> <SIGNER>")
