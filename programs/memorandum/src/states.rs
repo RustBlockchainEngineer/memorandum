@@ -6,6 +6,7 @@ pub struct GlobalState {
     pub bump: u8,
     pub super_owner: Pubkey,
     pub penalty_wallet: Pubkey,
+    pub memorandum_count: u64,
 
     // this space is for extra fields after contract deployed
     pub reserved: [u128; 7],

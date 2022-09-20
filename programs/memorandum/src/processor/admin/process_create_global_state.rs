@@ -10,7 +10,7 @@ pub fn handle(
     ctx.accounts.global_state.bump = *ctx.bumps.get("global_state").unwrap();
     ctx.accounts.global_state.super_owner = ctx.accounts.super_owner.key();
     ctx.accounts.global_state.penalty_wallet = Pubkey::from_str(DEFAULT_PENALTY_WALLET).unwrap();
-
+    ctx.accounts.global_state.memorandum_count = 0;
     Ok(())
 }
 
