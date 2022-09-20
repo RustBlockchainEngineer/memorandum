@@ -6,6 +6,8 @@ pub mod constant;
 pub mod states;
 /// error
 pub mod error;
+///processor
+pub mod processor;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
