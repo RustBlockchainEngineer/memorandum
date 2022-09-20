@@ -42,6 +42,194 @@ export declare type Memorandum = {
                 }
             ];
             "args": [];
+        },
+        {
+            "name": "updateGlobalState";
+            "accounts": [
+                {
+                    "name": "superOwner";
+                    "isMut": true;
+                    "isSigner": true;
+                },
+                {
+                    "name": "globalState";
+                    "isMut": true;
+                    "isSigner": false;
+                }
+            ];
+            "args": [
+                {
+                    "name": "superOwner";
+                    "type": "publicKey";
+                },
+                {
+                    "name": "penaltyWallet";
+                    "type": "publicKey";
+                }
+            ];
+        },
+        {
+            "name": "createMemorandumManager";
+            "accounts": [
+                {
+                    "name": "superOwner";
+                    "isMut": true;
+                    "isSigner": true;
+                },
+                {
+                    "name": "payer";
+                    "isMut": true;
+                    "isSigner": true;
+                },
+                {
+                    "name": "memorandumManager";
+                    "isMut": true;
+                    "isSigner": false;
+                },
+                {
+                    "name": "penaltyMint";
+                    "isMut": false;
+                    "isSigner": false;
+                },
+                {
+                    "name": "systemProgram";
+                    "isMut": false;
+                    "isSigner": false;
+                },
+                {
+                    "name": "tokenProgram";
+                    "isMut": false;
+                    "isSigner": false;
+                },
+                {
+                    "name": "rent";
+                    "isMut": false;
+                    "isSigner": false;
+                }
+            ];
+            "args": [
+                {
+                    "name": "penaltyAmount";
+                    "type": "u64";
+                }
+            ];
+        },
+        {
+            "name": "updateMemorandumManager";
+            "accounts": [
+                {
+                    "name": "superOwner";
+                    "isMut": true;
+                    "isSigner": true;
+                },
+                {
+                    "name": "memorandumManager";
+                    "isMut": true;
+                    "isSigner": false;
+                }
+            ];
+            "args": [
+                {
+                    "name": "penaltyAmount";
+                    "type": "u64";
+                }
+            ];
+        },
+        {
+            "name": "createMemorandum";
+            "accounts": [
+                {
+                    "name": "creator";
+                    "isMut": true;
+                    "isSigner": true;
+                },
+                {
+                    "name": "payer";
+                    "isMut": true;
+                    "isSigner": true;
+                },
+                {
+                    "name": "globalState";
+                    "isMut": true;
+                    "isSigner": false;
+                },
+                {
+                    "name": "memorandumManager";
+                    "isMut": false;
+                    "isSigner": false;
+                },
+                {
+                    "name": "memorandum";
+                    "isMut": true;
+                    "isSigner": false;
+                },
+                {
+                    "name": "systemProgram";
+                    "isMut": false;
+                    "isSigner": false;
+                },
+                {
+                    "name": "rent";
+                    "isMut": false;
+                    "isSigner": false;
+                }
+            ];
+            "args": [
+                {
+                    "name": "ix";
+                    "type": {
+                        "defined": "CreateMemorandumIx";
+                    };
+                }
+            ];
+        },
+        {
+            "name": "updateMemorandum";
+            "accounts": [
+                {
+                    "name": "creator";
+                    "isMut": true;
+                    "isSigner": true;
+                },
+                {
+                    "name": "globalState";
+                    "isMut": false;
+                    "isSigner": false;
+                },
+                {
+                    "name": "memorandumManager";
+                    "isMut": false;
+                    "isSigner": false;
+                },
+                {
+                    "name": "memorandum";
+                    "isMut": true;
+                    "isSigner": false;
+                },
+                {
+                    "name": "penaltyVault";
+                    "isMut": true;
+                    "isSigner": false;
+                },
+                {
+                    "name": "userVault";
+                    "isMut": true;
+                    "isSigner": false;
+                },
+                {
+                    "name": "tokenProgram";
+                    "isMut": false;
+                    "isSigner": false;
+                }
+            ];
+            "args": [
+                {
+                    "name": "ix";
+                    "type": {
+                        "defined": "UpdateMemorandumIx";
+                    };
+                }
+            ];
         }
     ];
     "accounts": [
@@ -278,3 +466,4 @@ export declare type Memorandum = {
     ];
 };
 export declare const IDL: Memorandum;
+//# sourceMappingURL=memorandum.d.ts.map

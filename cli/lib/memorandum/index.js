@@ -26,7 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createGlobalStateCommand = exports.readJsonKeypair = exports.SOLANA_CONNECTION = exports.RPC_ENDPOINT = exports.MEMORANDUM_PID = void 0;
+exports.getAllMemorandumManagers = exports.updateMemorandumCommand = exports.createMemorandumCommand = exports.createMemorandumManagerCommand = exports.createGlobalStateCommand = exports.readJsonKeypair = exports.SOLANA_CONNECTION = exports.RPC_ENDPOINT = exports.MEMORANDUM_PID = void 0;
 const fs_1 = __importDefault(require("fs"));
 const anchor = __importStar(require("@project-serum/anchor"));
 const main_1 = require("./main");
@@ -54,3 +54,46 @@ const createGlobalStateCommand = async (signer) => {
     await (0, main_1.createGlobalState)();
 };
 exports.createGlobalStateCommand = createGlobalStateCommand;
+const createMemorandumManagerCommand = async (penaltyTokenMint, penaltyAmount, signer) => {
+    const wallet = new anchor.Wallet((0, exports.readJsonKeypair)(signer));
+    const connection = exports.SOLANA_CONNECTION;
+    const pid = new anchor.web3.PublicKey(exports.MEMORANDUM_PID);
+    (0, main_1.initProgram)(wallet, connection, pid);
+    await (0, main_1.createMemorandumManager)(new anchor.web3.PublicKey(penaltyTokenMint), new anchor.BN(penaltyAmount));
+};
+exports.createMemorandumManagerCommand = createMemorandumManagerCommand;
+const createMemorandumCommand = async (penaltyTokenMint, title, content, signer) => {
+    const wallet = new anchor.Wallet((0, exports.readJsonKeypair)(signer));
+    const connection = exports.SOLANA_CONNECTION;
+    const pid = new anchor.web3.PublicKey(exports.MEMORANDUM_PID);
+    (0, main_1.initProgram)(wallet, connection, pid);
+    await (0, main_1.createMemorandum)(title, content, new anchor.web3.PublicKey(penaltyTokenMint));
+};
+exports.createMemorandumCommand = createMemorandumCommand;
+const updateMemorandumCommand = async (memorandumAddress, title, content, signer) => {
+    const wallet = new anchor.Wallet((0, exports.readJsonKeypair)(signer));
+    const connection = exports.SOLANA_CONNECTION;
+    const pid = new anchor.web3.PublicKey(exports.MEMORANDUM_PID);
+    (0, main_1.initProgram)(wallet, connection, pid);
+    await (0, main_1.updateMemorandum)(title, content, new anchor.web3.PublicKey(memorandumAddress));
+};
+exports.updateMemorandumCommand = updateMemorandumCommand;
+const getAllMemorandumManagers = async () => {
+    const wallet = new anchor.Wallet(anchor.web3.Keypair.generate());
+    const connection = exports.SOLANA_CONNECTION;
+    const pid = new anchor.web3.PublicKey(exports.MEMORANDUM_PID);
+    (0, main_1.initProgram)(wallet, connection, pid);
+    const all = await (0, main_1.getMemorandumManagerList)();
+    const refactored = [];
+    all.forEach((val) => {
+        refactored.push(JSON.stringify({
+            address: val.publicKey.toBase58(),
+            penaltyTokenMint: val.account.penaltyMint.toBase58(),
+            penaltyAmount: val.account.penaltyAmount.toNumber()
+        }));
+    });
+    console.log("managers:", refactored);
+    return refactored;
+};
+exports.getAllMemorandumManagers = getAllMemorandumManagers;
+//# sourceMappingURL=index.js.map
